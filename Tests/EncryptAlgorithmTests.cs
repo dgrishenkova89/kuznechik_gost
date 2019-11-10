@@ -110,8 +110,11 @@ namespace Kuznecik_GOST
         [Test]
         public void Should_correct_encrypt_decrypt_text()
         {
-            var parentDir = "C:/Users/d.kaydashova/Documents/kuznechik_gost-master/Temp";
+            // Директория, в которой лежат файлы MasterKey.txt и Text.txt
+            var parentDir = "";
+            // Файл с мастер-ключами
             var masterKey = File.ReadAllText($"{parentDir}/MasterKey.txt").Split(',');
+            // Файл с текстом
             var text = File.ReadAllText($"{parentDir}/Text.txt").Split(',');
 
             Assert.IsTrue(masterKey.Length == text.Length, "Кол-во ключей должно соответствовать кол-ву шифруемого текста.");
@@ -134,6 +137,7 @@ namespace Kuznecik_GOST
                 result.AppendFormat("MasterKey:{0}, Text:{1}, EncryptText:{2}, DecryptText:{3}\n", masterKey[i], text[i], encryptText, decrypText);
             }
             
+            // Результат шифрования-душифрования
             File.WriteAllText($"{parentDir}/Result.txt", result.ToString());
         }
     }
